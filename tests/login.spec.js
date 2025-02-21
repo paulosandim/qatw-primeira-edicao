@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { obterCodigo2FA } from '../support/db';
 import { LoginPage } from '../pages/LoginPage';
+import { DashPage } from '../pages/DashPage';
 
 test('Não deve logar quando o código de autenticação é inválido', async ({ page }) => {
   const loginPage = new LoginPage(page)
@@ -20,6 +21,7 @@ test('Não deve logar quando o código de autenticação é inválido', async ({
 
 test('Deve acessar a conta do usuário', async ({ page }) => {
   const loginPage = new LoginPage(page)
+  const dashPage = new DashPage(page)
 
   const usuario = {
     cpf: '00000014141',
@@ -39,5 +41,5 @@ test('Deve acessar a conta do usuário', async ({ page }) => {
   // temporario
   await page.waitForTimeout(2000)
 
-  expect(await loginPage.obterSaldo()).toHaveText('R$ 5.000,00')
+  expect(await dashPage.obterSaldo()).toHaveText('R$ 5.000,00')
 });
