@@ -47,5 +47,8 @@ test('Deve acessar a conta do usuário', async ({ page }) => {
   await page.getByRole('textbox', { name: '000000' }).fill(code);
   await page.getByRole('button', { name: 'Verificar' }).click();
 
+  // temporario
   await page.waitForTimeout(2000)
+
+  await expect(page.locator('#account-balance')).toContainText('R$ 5.000,00');
 });
