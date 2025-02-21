@@ -39,7 +39,7 @@ test('Deve acessar a conta do usuário', async ({ page }) => {
   await loginPage.informa2FA(codigo)
 
   // temporario
-  await page.waitForTimeout(2000)
+  await page.waitForTimeout(3000)
 
   expect(await dashPage.obterSaldo()).toHaveText('R$ 5.000,00')
 });
